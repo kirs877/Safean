@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}الرئيسية - موقع كرة القدم{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="hero-section bg-gradient-primary text-white rounded-3 p-5 mb-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-3">
+                    <i class="fas fa-futbol me-3"></i>
+                    مرحباً بك في موقع كرة القدم
+                </h1>
+                <p class="lead mb-4">
+                    موقعك الأول للحصول على أحدث أخبار ومعلومات كرة القدم من جميع أنحاء العالم
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{{ url_for('matches_page') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-calendar-alt me-2"></i>
+                        المباريات اليوم
+                    </a>
+                    <a href="{{ url_for('news_page') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-newspaper me-2"></i>
+                        آخر الأخبار
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <i class="fas fa-futbol" style="font-size: 200px; opacity: 0.3;"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="row mb-5">
+        <div class="col-md-3 mb-3">
+            <div class="card text-center border-0 shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-users text-primary fs-1 mb-3"></i>
+                    <h4 class="text-primary">{{ teams|length }}</h4>
+                    <p class="text-muted">فريق</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center border-0 shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-calendar text-success fs-1 mb-3"></i>
+                    <h4 class="text-success">{{ matches|length }}</h4>
+                    <p class="text-muted">مباراة</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center border-0 shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-newspaper text-warning fs-1 mb-3"></i>
+                    <h4 class="text-warning">{{ news|length }}</h4>
+                    <p class="text-muted">خبر</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center border-0 shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-trophy text-danger fs-1 mb-3"></i>
+                    <h4 class="text-danger">15</h4>
+                    <p class="text-muted">بطولة</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Teams -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center mb-4">
+                <i class="fas fa-star text-warning me-2"></i>
+                الفرق المميزة
+            </h2>
+        </div>
+        {% for team in teams %}
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card team-card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="team-logo mb-3">
+                        <i class="fas fa-shield-alt text-primary" style="font-size: 3rem;"></i>
+                    </div>
+                    <h5 class="card-title">{{ team.name }}</h5>
+                    <p class="text-muted">{{ team.country }}</p>
+                    <small class="text-muted">تأسس: {{ team.founded }}</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Upcoming Matches -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center mb-4">
+                <i class="fas fa-calendar-alt text-success me-2"></i>
+                المباريات القادمة
+            </h2>
+        </div>
+        {% for match in matches %}
+        <div class="col-lg-4 col-md-6 mb-3">
+            <div class="card match-card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-primary">{{ match.competition }}</span>
+                        <small class="text-muted">{{ match.date }}</small>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-4 text-center">
+                            <i class="fas fa-shield-alt text-primary fs-3"></i>
+                            <div class="mt-2">
+                                <small>{{ match.team1 }}</small>
+                            </div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <strong class="text-muted">VS</strong>
+                            <div class="mt-1">
+                                <small class="text-muted">{{ match.time }}</small>
+                            </div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <i class="fas fa-shield-alt text-danger fs-3"></i>
+                            <div class="mt-2">
+                                <small>{{ match.team2 }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Latest News -->
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center mb-4">
+                <i class="fas fa-newspaper text-info me-2"></i>
+                آخر الأخبار
+            </h2>
+        </div>
+        {% for article in news %}
+        <div class="col-lg-4 col-md-6 mb-3">
+            <div class="card news-card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge bg-secondary">{{ article.category }}</span>
+                        <small class="text-muted">{{ article.date }}</small>
+                    </div>
+                    <h5 class="card-title">{{ article.title }}</h5>
+                    <p class="card-text text-muted">{{ article.summary }}</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-arrow-left me-1"></i>
+                        اقرأ المزيد
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Add some interactive animations
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animate cards on hover
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}الفرق - موقع كرة القدم{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1 class="display-5 fw-bold mb-3">
+                <i class="fas fa-users text-primary me-3"></i>
+                جميع الفرق
+            </h1>
+            <p class="lead text-muted">تعرف على أشهر الفرق في العالم</p>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for team in teams %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card team-detail-card border-0 shadow h-100">
+                <div class="card-header bg-gradient-primary text-white text-center">
+                    <i class="fas fa-shield-alt" style="font-size: 3rem;"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-3">{{ team.name }}</h5>
+                    <div class="team-info">
+                        <div class="info-item mb-2">
+                            <i class="fas fa-globe text-primary me-2"></i>
+                            <strong>الدولة:</strong> {{ team.country }}
+                        </div>
+                        <div class="info-item mb-2">
+                            <i class="fas fa-calendar text-success me-2"></i>
+                            <strong>تأسس:</strong> {{ team.founded }}
+                        </div>
+                        <div class="info-item mb-3">
+                            <i class="fas fa-map-marker-alt text-danger me-2"></i>
+                            <strong>الملعب:</strong> {{ team.stadium }}
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-info-circle me-1"></i>
+                            تفاصيل أكثر
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Team Statistics -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="text-center mb-4">
+                <i class="fas fa-chart-bar text-info me-2"></i>
+                إحصائيات سريعة
+            </h3>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-center border-0 shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-trophy text-warning fs-1 mb-3"></i>
+                    <h4 class="text-warning">{{ teams|length }}</h4>
+                    <p class="text-muted">فريق مميز</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-center border-0 shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-globe text-success fs-1 mb-3"></i>
+                    <h4 class="text-success">5</h4>
+                    <p class="text-muted">دولة مختلفة</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-center border-0 shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-star text-info fs-1 mb-3"></i>
+                    <h4 class="text-info">124</h4>
+                    <p class="text-muted">سنة تاريخ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,335 @@
+/* Custom Football Website Styles */
+
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --football-green: #2d5a27;
+    --football-accent: #ff6b35;
+}
+
+/* General Styles */
+body {
+    font-family: 'Segoe UI', 'Cairo', 'Amiri', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Navigation Styles */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--football-accent) !important;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--football-green));
+    border-radius: 15px !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="70" r="1" fill="white" opacity="0.1"/></svg>');
+    pointer-events: none;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--football-green)) !important;
+}
+
+/* Card Styles */
+.card {
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.team-card .card-body {
+    padding: 2rem;
+}
+
+.match-card .card-body {
+    background: linear-gradient(45deg, #fff, #f8f9fa);
+}
+
+.news-card {
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Team Detail Cards */
+.team-detail-card .card-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--football-green));
+    padding: 2rem;
+    border-radius: 15px 15px 0 0;
+}
+
+.team-info .info-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.team-info .info-item:last-child {
+    border-bottom: none;
+}
+
+/* Match Cards */
+.match-detail-card .card-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--success-color));
+}
+
+.vs-section {
+    position: relative;
+}
+
+.vs-circle {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 3px solid var(--primary-color);
+}
+
+.team-section i {
+    transition: transform 0.3s ease;
+}
+
+.team-section:hover i {
+    transform: scale(1.1);
+}
+
+/* Live Match Animation */
+.live-match-card {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
+
+/* News Cards */
+.news-detail-card {
+    border-top: 4px solid var(--primary-color);
+}
+
+.news-detail-card[data-category="انتقالات"] {
+    border-top-color: var(--success-color);
+}
+
+.news-detail-card[data-category="نتائج المباريات"] {
+    border-top-color: var(--warning-color);
+}
+
+.news-detail-card[data-category="دوري أبطال أوروبا"] {
+    border-top-color: var(--info-color);
+}
+
+.featured-news {
+    border-left: 8px solid var(--danger-color);
+}
+
+.featured-image {
+    background: linear-gradient(135deg, var(--primary-color), var(--danger-color));
+}
+
+/* Breaking News Ticker */
+.breaking-news {
+    background: linear-gradient(135deg, var(--danger-color), #b02a37) !important;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.breaking-label {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+/* Button Styles */
+.btn {
+    border-radius: 25px;
+    font-weight: 500;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--football-green));
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--football-green), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Badge Styles */
+.badge {
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(135deg, var(--dark-color), #495057) !important;
+    margin-top: 4rem;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--football-accent) !important;
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+    }
+    
+    .hero-section .col-lg-6:last-child {
+        display: none;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .vs-section .vs-circle {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .team-section i {
+        font-size: 2rem !important;
+    }
+}
+
+/* Arabic Font Support */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+}
+
+/* Loading Animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Hover Effects */
+.card-hover-effect {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover-effect:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Football Field Background Effect */
+.football-bg {
+    background-image: 
+        linear-gradient(90deg, var(--football-green) 50%, transparent 50%),
+        linear-gradient(var(--football-green) 50%, transparent 50%);
+    background-size: 20px 20px;
+    opacity: 0.05;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary-color), var(--football-green));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--football-green), var(--primary-color));
+}
+
+/* Text Selection */
+::selection {
+    background: var(--football-accent);
+    color: white;
+}
