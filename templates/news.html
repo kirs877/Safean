@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}الأخبار - موقع كرة القدم{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1 class="display-5 fw-bold mb-3">
+                <i class="fas fa-newspaper text-info me-3"></i>
+                أحدث الأخبار
+            </h1>
+            <p class="lead text-muted">تابع آخر أخبار كرة القدم من جميع أنحاء العالم</p>
+        </div>
+    </div>
+
+    <!-- News Categories -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <button class="btn btn-outline-primary active" data-category="all">
+                    <i class="fas fa-globe me-1"></i>
+                    جميع الأخبار
+                </button>
+                <button class="btn btn-outline-success" data-category="انتقالات">
+                    <i class="fas fa-exchange-alt me-1"></i>
+                    انتقالات
+                </button>
+                <button class="btn btn-outline-warning" data-category="نتائج المباريات">
+                    <i class="fas fa-trophy me-1"></i>
+                    نتائج المباريات
+                </button>
+                <button class="btn btn-outline-info" data-category="دوري أبطال أوروبا">
+                    <i class="fas fa-star me-1"></i>
+                    دوري أبطال أوروبا
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured News -->
+    {% if news %}
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card featured-news border-0 shadow-lg">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <div class="featured-image bg-gradient-primary d-flex align-items-center justify-content-center h-100">
+                            <i class="fas fa-newspaper text-white" style="font-size: 5rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-danger fs-6">خبر عاجل</span>
+                                <span class="text-muted">{{ news[0].date }}</span>
+                            </div>
+                            <h3 class="card-title">{{ news[0].title }}</h3>
+                            <p class="card-text lead">{{ news[0].summary }}</p>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                اقرأ التفاصيل
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- News Grid -->
+    <div class="row">
+        {% for article in news %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card news-detail-card border-0 shadow h-100" data-category="{{ article.category }}">
+                <div class="card-header bg-light border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge 
+                            {% if article.category == 'انتقالات' %}bg-success
+                            {% elif article.category == 'نتائج المباريات' %}bg-warning
+                            {% elif article.category == 'دوري أبطال أوروبا' %}bg-info
+                            {% else %}bg-secondary
+                            {% endif %}">
+                            {{ article.category }}
+                        </span>
+                        <small class="text-muted">
+                            <i class="fas fa-clock me-1"></i>
+                            {{ article.date }}
+                        </small>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="news-image mb-3 text-center">
+                        <i class="fas 
+                            {% if article.category == 'انتقالات' %}fa-exchange-alt text-success
+                            {% elif article.category == 'نتائج المباريات' %}fa-trophy text-warning
+                            {% elif article.category == 'دوري أبطال أوروبا' %}fa-star text-info
+                            {% else %}fa-newspaper text-secondary
+                            {% endif %}" style="font-size: 3rem;"></i>
+                    </div>
+                    <h5 class="card-title">{{ article.title }}</h5>
+                    <p class="card-text text-muted">{{ article.summary }}</p>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-arrow-left me-1"></i>
+                            اقرأ المزيد
+                        </button>
+                        <div class="news-actions">
+                            <button class="btn btn-outline-secondary btn-sm me-1" title="مشاركة">
+                                <i class="fas fa-share"></i>
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm" title="إعجاب">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Breaking News Ticker -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="breaking-news bg-danger text-white p-3 rounded">
+                <div class="d-flex align-items-center">
+                    <div class="breaking-label me-3">
+                        <strong>
+                            <i class="fas fa-bolt me-1"></i>
+                            عاجل
+                        </strong>
+                    </div>
+                    <div class="breaking-content">
+                        <marquee behavior="scroll" direction="right" scrollamount="3">
+                            الريال مدريد يفوز على برشلونة 3-1 في الكلاسيكو • مانشستر يونايتد يتأهل لنصف النهائي • باريس سان جيرمان يضم نجماً جديداً
+                        </marquee>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // News category filter
+    const categoryButtons = document.querySelectorAll('[data-category]');
+    const newsCards = document.querySelectorAll('.news-detail-card');
+    
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const category = this.getAttribute('data-category');
+            
+            // Update active button
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter news cards
+            newsCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                    card.parentElement.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                    card.parentElement.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+</script>
+{% endblock %}
